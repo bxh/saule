@@ -94,7 +94,9 @@
     <Compile Include="Queries\Sorting\SortingProperty.cs" />
     <Compile Include="ResourceRelationshipOfT.cs" />
     <Compile Include="Serialization\CanonicalUrlPathBuilder.cs" />
+    <Compile Include="Serialization\CountMetadata.cs" />
     <Compile Include="Serialization\DefaultUrlPathBuilder.cs" />
+    <Compile Include="Serialization\IMetadataProvider{TResponse,TMetadata}.cs" />
     <Compile Include="Serialization\IUrlPathBuilder.cs" />
     <Compile Include="Http\PaginatedAttribute.cs" />
     <Compile Include="Http\ReturnsResourceAttribute.cs" />
@@ -113,6 +115,8 @@
     <Compile Include="Serialization\ResourceDeserializer.cs" />
     <Compile Include="JsonApiException.cs" />
     <Compile Include="Serialization\ResourceSerializer.cs" />
+    <Compile Include="Serialization\ResponseMetadata.cs" />
+    <Compile Include="Serialization\TotalCountMetadataProvider.cs" />
     <Compile Include="StringExtensions.cs" />
     <Compile Include="TypeExtensions.cs" />
   </ItemGroup>
