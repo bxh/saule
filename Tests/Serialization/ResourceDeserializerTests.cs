@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using Saule.Serialization;
 using System.Linq;
@@ -35,7 +36,8 @@ namespace Tests.Serialization
         [Fact(DisplayName = "Deserializes id and attributes")]
         public void DeserializesAttributes()
         {
-            var target = new ResourceDeserializer(_singleJson, typeof(Person));
+            var target = new ResourceDeserializer(_singleJson, typeof(Person),
+                new DefaultPropertyMap(new PersonResource()));
             var result = target.Deserialize() as Person;
 
             Assert.Equal(_person.Identifier, result?.Identifier);
@@ -48,7 +50,9 @@ namespace Tests.Serialization
         public void DeserializesWithoutId()
         {
             (_singleJson["data"] as JObject)?.Property("id").Remove();
-            var target = new ResourceDeserializer(_singleJson, typeof(Person));
+            var target = new ResourceDeserializer(_singleJson, typeof(Person),
+                new DefaultPropertyMap(new PersonResource()));
+
             var result = target.Deserialize() as Person;
 
             Assert.Equal(null, result?.Identifier);
@@ -60,7 +64,9 @@ namespace Tests.Serialization
         [Fact(DisplayName = "Deserializes belongsTo relationships")]
         public void DeserializesBelongsToRelationships()
         {
-            var target = new ResourceDeserializer(_singleJson, typeof(Person));
+            var target = new ResourceDeserializer(_singleJson, typeof(Person),
+                new DefaultPropertyMap(new PersonResource()));
+
             var result = target.Deserialize() as Person;
             var job = result?.Job;
 
@@ -72,7 +78,8 @@ namespace Tests.Serialization
         [Fact(DisplayName = "Deserializes hasMany relationships")]
         public void DeserializesHasManyRelationship()
         {
-            var target = new ResourceDeserializer(_singleJson, typeof(Person));
+            var target = new ResourceDeserializer(_singleJson, typeof(Person),
+                new DefaultPropertyMap(new PersonResource()));
             var result = target.Deserialize() as Person;
 
             var expected = _person.Friends.Single();
@@ -89,8 +96,9 @@ namespace Tests.Serialization
         [Fact(DisplayName = "Deserializes enumerables properly")]
         public void DeserializesEnumerables()
         {
-            var target = new ResourceDeserializer(_collectionJson, typeof(Person[]));
-            var result = target.Deserialize() as Person[];
+            var target = new ResourceDeserializer(_collectionJson, typeof(Person[]),
+                new DefaultPropertyMap(new PersonResource()));
+            var result = (target.Deserialize() as IEnumerable<object>)?.Cast<Person>().ToArray();
 
             Assert.Equal(_people.Length, result?.Length);
             for (var i = 0; i < _people.Length; i++)

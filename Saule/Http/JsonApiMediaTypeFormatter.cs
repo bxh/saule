@@ -18,7 +18,7 @@ namespace Saule.Http
     public class JsonApiMediaTypeFormatter : MediaTypeFormatter
     {
         private readonly JsonApiConfiguration _config = new JsonApiConfiguration();
-        private HttpRequestMessage _request;
+        private readonly HttpRequestMessage _request;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonApiMediaTypeFormatter"/> class.
@@ -123,8 +123,14 @@ namespace Saule.Http
         {
             using (var reader = new StreamReader(readStream))
             {
+                ApiResource resource = null;
+                if (_request.Properties.ContainsKey(Constants.RequestPropertyName))
+                {
+                    resource = (ApiResource)_request.Properties[Constants.RequestPropertyName];
+                }
+
                 var json = JToken.Parse(await reader.ReadToEndAsync());
-                return new ResourceDeserializer(json, type).Deserialize();
+                return new ResourceDeserializer(json, type, new DefaultPropertyMap(resource)).Deserialize();
             }
         }
 

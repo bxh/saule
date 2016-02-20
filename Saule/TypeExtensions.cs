@@ -18,6 +18,29 @@ namespace Saule
             return Activator.CreateInstance(type) as T;
         }
 
+        public static bool IsComplexType(this Type type)
+        {
+            var idTypes = new[]
+            {
+                typeof(Enum),
+                typeof(string),
+                typeof(char),
+                typeof(Guid),
+
+                typeof(byte),
+                typeof(short),
+                typeof(int),
+                typeof(long),
+
+                typeof(sbyte),
+                typeof(ushort),
+                typeof(uint),
+                typeof(ulong),
+            };
+
+            return !idTypes.Any(t => t.IsAssignableFrom(type));
+        }
+
         public static IEnumerable<Type> GetInheritanceChain(this Type type)
         {
             if (type.BaseType == null)
