@@ -130,7 +130,7 @@ namespace Saule.Http
                 }
 
                 var json = JToken.Parse(await reader.ReadToEndAsync());
-                return new ResourceDeserializer(json, type, new DefaultPropertyMap(resource)).Deserialize();
+                return new ResourceDeserializer(json, type, resource).Deserialize();
             }
         }
 

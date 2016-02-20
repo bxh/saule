@@ -37,7 +37,7 @@ namespace Tests.Serialization
         public void DeserializesAttributes()
         {
             var target = new ResourceDeserializer(_singleJson, typeof(Person),
-                new DefaultPropertyMap(new PersonResource()));
+                new PersonResource());
             var result = target.Deserialize() as Person;
 
             Assert.Equal(_person.Identifier, result?.Identifier);
@@ -51,7 +51,7 @@ namespace Tests.Serialization
         {
             (_singleJson["data"] as JObject)?.Property("id").Remove();
             var target = new ResourceDeserializer(_singleJson, typeof(Person),
-                new DefaultPropertyMap(new PersonResource()));
+                new PersonResource());
 
             var result = target.Deserialize() as Person;
 
@@ -65,7 +65,7 @@ namespace Tests.Serialization
         public void DeserializesBelongsToRelationships()
         {
             var target = new ResourceDeserializer(_singleJson, typeof(Person),
-                new DefaultPropertyMap(new PersonResource()));
+                new PersonResource());
 
             var result = target.Deserialize() as Person;
             var job = result?.Job;
@@ -79,7 +79,7 @@ namespace Tests.Serialization
         public void DeserializesHasManyRelationship()
         {
             var target = new ResourceDeserializer(_singleJson, typeof(Person),
-                new DefaultPropertyMap(new PersonResource()));
+                new PersonResource());
             var result = target.Deserialize() as Person;
 
             var expected = _person.Friends.Single();
@@ -97,7 +97,7 @@ namespace Tests.Serialization
         public void DeserializesEnumerables()
         {
             var target = new ResourceDeserializer(_collectionJson, typeof(Person[]),
-                new DefaultPropertyMap(new PersonResource()));
+                new PersonResource());
             var result = (target.Deserialize() as IEnumerable<object>)?.Cast<Person>().ToArray();
 
             Assert.Equal(_people.Length, result?.Length);

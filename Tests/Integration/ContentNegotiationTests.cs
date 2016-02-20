@@ -123,7 +123,9 @@ namespace Tests.Integration
                 content.Headers.ContentType = mediaType;
 
                 var result = await target.PostAsync(Paths.SingleResource, content);
+                var responseContent = await result.Content.ReadAsByteArrayAsync();
 
+                Assert.Empty(responseContent);
                 Assert.Equal(HttpStatusCode.UnsupportedMediaType, result.StatusCode);
             }
 

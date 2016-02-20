@@ -8,7 +8,7 @@ namespace Saule
     /// <summary>
     /// Represents a resource that can be consumed by clients.
     /// </summary>
-    public abstract class ApiResource
+    public abstract partial class ApiResource
     {
         private static readonly ConcurrentDictionary<Type, ApiResource> Resources =
             new ConcurrentDictionary<Type, ApiResource>();

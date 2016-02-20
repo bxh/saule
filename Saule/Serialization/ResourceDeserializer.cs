@@ -9,13 +9,13 @@ namespace Saule.Serialization
     internal class ResourceDeserializer
     {
         private readonly JToken _object;
-        private readonly IResourceDeserializationPropertyMap _deserializationMap;
+        private readonly IDeserializationPropertyMap _deserializationMap;
         private Type _target;
 
         public ResourceDeserializer(
             JToken @object,
             Type target,
-            IResourceDeserializationPropertyMap deserializationMap)
+            IDeserializationPropertyMap deserializationMap)
         {
             _object = @object;
             _target = target;
