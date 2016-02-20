@@ -32,7 +32,9 @@ namespace Tests.Integration
             [Fact(DisplayName = "Default constructor uses DefaultUrlPathBuilder and no converters")]
             public async Task DefaultConstructorObsolete()
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 var formatter = new JsonApiMediaTypeFormatter();
+#pragma warning restore CS0618 // Type or member is obsolete
 
                 using (var server = new ObsoleteSetupJsonApiServer(formatter))
                 {
@@ -54,8 +56,10 @@ namespace Tests.Integration
             [Fact(DisplayName = "Url builder constructor generates those urls")]
             public async Task UrlBuilderConstructorObsolete()
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 var formatter = new JsonApiMediaTypeFormatter(
                     new CanonicalUrlPathBuilder());
+#pragma warning restore CS0618 // Type or member is obsolete
 
                 using (var server = new ObsoleteSetupJsonApiServer(formatter))
                 {
@@ -72,8 +76,10 @@ namespace Tests.Integration
             [Fact(DisplayName = "Converter constructor uses that converter")]
             public async Task ConverterConstructorObsolete()
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 var formatter = new JsonApiMediaTypeFormatter(
                     new StringEnumConverter());
+#pragma warning restore CS0618 // Type or member is obsolete
 
                 using (var server = new ObsoleteSetupJsonApiServer(formatter))
                 {
@@ -88,9 +94,11 @@ namespace Tests.Integration
             [Fact(DisplayName = "Builder and converter constructor uses both of those")]
             public async Task BuilderAndConverterConstructorObsolete()
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 var formatter = new JsonApiMediaTypeFormatter(
                     new CanonicalUrlPathBuilder(),
                     new StringEnumConverter());
+#pragma warning restore CS0618 // Type or member is obsolete
 
                 using (var server = new ObsoleteSetupJsonApiServer(formatter))
                 {
@@ -112,7 +120,9 @@ namespace Tests.Integration
             [Fact(DisplayName = "Applies pagination when appropriate")]
             public async Task AppliesPaginationObsolete()
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 var formatter = new JsonApiMediaTypeFormatter();
+#pragma warning restore CS0618 // Type or member is obsolete
 
                 using (var server = new ObsoleteSetupJsonApiServer(formatter))
                 {
@@ -127,7 +137,9 @@ namespace Tests.Integration
             [Fact(DisplayName = "Applies sorting when appropriate")]
             public async Task AppliesSortingObsolete()
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 var formatter = new JsonApiMediaTypeFormatter();
+#pragma warning restore CS0618 // Type or member is obsolete
 
                 using (var server = new ObsoleteSetupJsonApiServer(formatter))
                 {
@@ -147,7 +159,9 @@ namespace Tests.Integration
             [Fact(DisplayName = "Applies filtering when appropriate")]
             public async Task AppliesFilteringObsolete()
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 var formatter = new JsonApiMediaTypeFormatter();
+#pragma warning restore CS0618 // Type or member is obsolete
 
                 using (var server = new ObsoleteSetupJsonApiServer(formatter))
                 {
@@ -168,7 +182,9 @@ namespace Tests.Integration
             [Fact(DisplayName = "Does not apply sorting when not allowed")]
             public async Task AppliesSortingConditionallyObsolete()
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 var formatter = new JsonApiMediaTypeFormatter();
+#pragma warning restore CS0618 // Type or member is obsolete
 
                 using (var server = new ObsoleteSetupJsonApiServer(formatter))
                 {
@@ -190,7 +206,9 @@ namespace Tests.Integration
             [InlineData("paginate/query")]
             public async Task AppliesSortingBeforePaginationObsolete(string path)
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 var formatter = new JsonApiMediaTypeFormatter();
+#pragma warning restore CS0618 // Type or member is obsolete
 
                 using (var server = new ObsoleteSetupJsonApiServer(formatter))
                 {
@@ -216,7 +234,9 @@ namespace Tests.Integration
             [Fact(DisplayName = "Gives useful error when you don't add ReturnsResourceAttribute")]
             public async Task GivesUsefulErrorObsolete()
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 var formatter = new JsonApiMediaTypeFormatter();
+#pragma warning restore CS0618 // Type or member is obsolete
 
                 using (var server = new ObsoleteSetupJsonApiServer(formatter))
                 {

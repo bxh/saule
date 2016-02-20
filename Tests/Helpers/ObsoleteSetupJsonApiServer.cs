@@ -15,7 +15,9 @@ namespace Tests.Helpers
         private readonly TestServer _server;
 
         public ObsoleteSetupJsonApiServer()
+#pragma warning disable CS0618 // Type or member is obsolete
             : this(new JsonApiMediaTypeFormatter())
+#pragma warning restore CS0618 // Type or member is obsolete
         {
         }
 
